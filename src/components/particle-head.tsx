@@ -56,7 +56,7 @@ const ParticleHead: React.FC = () => {
   //   return <div><div></div></div>;
   // }
 
-  const isClient = typeof window !== "undefined";
+  
 
   return (
     <div
