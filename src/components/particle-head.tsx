@@ -61,7 +61,7 @@ const ParticleHead: React.FC = () => {
   return (
     <div
       // style={{ width: "100", height: "100vh" }}
-      className="w-[100px] h-[122px] lg:w-[740px] lg:h-[826px] mx-auto"
+      className="w-[300px] h-[322px] lg:w-[740px] lg:h-[826px] mx-auto"
       // onMouseMove={handleMouseMove}
     >
       {

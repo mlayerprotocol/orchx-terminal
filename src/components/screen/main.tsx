@@ -11,7 +11,6 @@ import Notification from "../notification";
 import { ChatResponse } from "@/model/chat-response";
 import { TypeWriter } from "../typewrite";
 
-
 export const MainScreen = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
@@ -57,7 +56,7 @@ export const MainScreen = () => {
   return (
     <div className="relative w-full h-full flex-col justify-center">
       <ParticleHead />
-      <div className=" absolute top-[40vh] flex flex-col w-full items-center">
+      <div className=" absolute top-[20vh] lg:top-[40vh] flex flex-col w-full items-center">
         <div className="flex flex-col w-full">
           <TypeWriter
             text={"// OrchX"}
@@ -99,7 +98,7 @@ export const MainScreen = () => {
               speed={10}
               cursor={false}
               delay={2000}
-              text={"# CA: 0x920js0ijdfsosd0osfd0lsowi0sd"}
+              text={"# CA: TBA"}
             />
           </Link>
           <Link
@@ -111,13 +110,13 @@ export const MainScreen = () => {
               speed={10}
               cursor={false}
               delay={2200}
-              text={"# DXTOOLS"}
+              text={"# DXTOOLS: TBA"}
             />
           </Link>
           <Link
             target="_blank"
             className="text-[#12E16C] mb-1  self-start"
-            href={"/"}
+            href={"https://x.com/0xorchx"}
           >
             <TypeWriter speed={10} cursor={false} delay={2400} text={"# X"} />
           </Link>
@@ -130,13 +129,13 @@ export const MainScreen = () => {
               speed={10}
               cursor={false}
               delay={2600}
-              text={"# TELEGRAM"}
+              text={"# TELEGRAM: TBA"}
             />
           </Link>
           <Link
             target="_blank"
             className="text-[#12E16C] mb-1  self-start"
-            href={"/"}
+            href={"https://mlayer.gitbook.io/orchx"}
           >
             <TypeWriter
               speed={10}
@@ -148,7 +147,7 @@ export const MainScreen = () => {
           <Link
             target="_blank"
             className="text-[#12E16C] mb-1  self-start"
-            href={"/"}
+            href={"https://github.com/mlayerprotocol"}
           >
             <TypeWriter
               speed={10}
