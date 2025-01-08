@@ -4,13 +4,13 @@ import ParticleHead from "../particle-head";
 import Link from "next/link";
 import { ChatBox } from "../chat";
 import { Message, MessageBox } from "../message";
-import { dateTime, getUUID, makeRequest } from "@/utils/helper";
+import { getUUID, makeRequest } from "@/utils/helper";
 import { LinearLoader } from "../loader";
 import { agentId } from "@/utils/constant";
 import Notification from "../notification";
 import { ChatResponse } from "@/model/chat-response";
 import { TypeWriter } from "../typewrite";
-import { div } from "three/tsl";
+
 
 export const MainScreen = () => {
   const [messages, setMessages] = useState<Message[]>([]);
