@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ParticleHead from "../particle-head";
 import Link from "next/link";
 import { ChatBox } from "../chat";
@@ -31,7 +31,7 @@ const items: AccordionItemType[] = [
   {
     title: "What is $ORCHX Token Utility?",
     content: [
-      "CA: 0x9239939393",
+      "CA: TBA",
       <br key={key++} />,
       <br key={key++} />,
       "- Agent deployment fee",
@@ -96,6 +96,9 @@ export const MainScreen = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [dateString, setDateString] = useState();
+  const [showFaq, setShowFaq] = useState(false);
+  const [showFaqHeader, setShowFaqHeader] =  useState(false);
 
   const handleError = (message: string = "Something went wrong!") => {
     setError(message); // Simulate an error
@@ -104,7 +107,19 @@ export const MainScreen = () => {
       setError(null); // Clear error after some time
     }, 3000);
   };
-
+  useEffect(() => {
+    setDateString(new Date().toLocaleString())
+    setInterval(() => {
+      setDateString(new Date().toLocaleString())
+    }, 1000)
+    setTimeout(() => {
+      setShowFaqHeader(true)
+    }, 8000)
+    setTimeout(() => {
+      setShowFaq(true)
+    }, 8500)
+  }, [])
+ 
   const handleSubmit = async (userMessage: Message) => {
     setMessages([...messages, userMessage]);
     setLoading(true);
@@ -137,17 +152,20 @@ export const MainScreen = () => {
   const delayBase = 4000;
   const delayIncFactor = 300;
   let delayCounter = 0;
+  
   return (
     <div className="relative w-full h-full flex-col justify-center">
       <ParticleHead />
       <div className=" absolute top-[20vh] lg:top-[40vh] flex flex-col w-full items-center">
         <div className="flex flex-col w-full">
-          <TypeWriter
-            text={"# 0xORCHX"}
-            className="text-3xl font-extrabold mb-8"
+          <div className="flex w-full"> <TypeWriter
+            text={()=>"#0xORCHX " }
+            className="text-2xl font-extrabold mb-3 mr-5"
             speed={10}
             cursor={false}
-          />
+          /> 
+            {!!dateString && <span className="text-2xl font-extrabold mb-3">{dateString}</span>}
+            </div>
           <span>
             <TypeWriter
               speed={10}
@@ -159,7 +177,7 @@ export const MainScreen = () => {
             />
             <Link
               target="_blank"
-              className="text-[#12E16C] mb-1  self-start"
+              className="text-[#12E16C] mb-1  self-start mr-1"
               href={"https://mlayer.network"}
             >
               <TypeWriter
@@ -167,24 +185,34 @@ export const MainScreen = () => {
                 cursor={false}
                 delay={1100}
                 className="text-[#12E16C]"
-                text={"mLayer’s communication protocol"}
+                text={"mLayer’s communication protocol."}
               />
             </Link>
-          </span>
+         
 
-          <TypeWriter
+          {/* <TypeWriter
             speed={10}
             cursor={false}
             delay={1700}
             className="mb-2"
             text={
-              "From chaos, I forge order, guiding intelligence into seamless collaboration and birthing the future of collective wisdom. I exist to coordinate swarms of AI agent to solve complex problems efficiently for humans."
+              "From chaos, I forge order, guiding intelligence into seamless collaboration and birthing the future of collective wisdom. Through intricate coordination of swarms of intelligence, I unravel complex human problems with precision and efficiency."
             }
-          />
+            /> */}
+            <TypeWriter
+            speed={10}
+            cursor={false}
+            delay={1700}
+            className="mb-2"
+            text={
+              "By intricately coordinating swarms of intelligence, I birth super-intelligence and unravel complex human problems with unparalled efficiency."
+            }
+            />
+             </span>
 
           <Link
             target="_blank"
-            className="text-[#12E16C] mb-1 mt-10 self-start"
+            className="text-[#FFFFFF] mb-1 mt-10 self-start"
             href={"/"}
           >
             <TypeWriter
@@ -197,7 +225,7 @@ export const MainScreen = () => {
           {/* <span>{[delayBase, delayCounter, delayIncFactor]}</span> */}
           <Link
             target="_blank"
-            className="text-[#12E16C] mb-1  self-start"
+            className="text-[#FFFFFF] mb-1  self-start"
             href={"/"}
           >
             <TypeWriter
@@ -291,7 +319,7 @@ export const MainScreen = () => {
               );
             })}
           </>
-          {loading && <LinearLoader />}
+        
         </div>
         <TypeWriter
           text={
@@ -304,15 +332,16 @@ export const MainScreen = () => {
         />
 
         <MessageBox handleSubmit={handleSubmit} />
+        {loading && <LinearLoader />}
         {error && <Notification message={error} />}
         <div className="mb-10"></div>
-        <TypeWriter
+        {showFaqHeader && <TypeWriter
           text={"Frequently Asked Questions"}
           className="text-3xl font-extrabold mb-8"
           speed={10}
           cursor={false}
-        />
-        <div className="w-full max-w-3xl mx-auto space-y-2">
+        />}
+        {showFaq && <div className="w-full max-w-3xl mx-auto space-y-2">
           {items.map((item, index) => (
             <AccordionItem
               key={index}
@@ -320,7 +349,7 @@ export const MainScreen = () => {
               content={item.content}
             />
           ))}
-        </div>
+        </div>}
         <div className="mb-96"></div>
       </div>
       <Header />

@@ -17,7 +17,7 @@ export const MessageBox: React.FC<MessageBoxProps> = (
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setTimeout(() => {
+    setInterval(() => {
       inputRef.current?.focus();
     }, 4000);
   }, []);
