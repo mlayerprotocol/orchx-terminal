@@ -59,7 +59,7 @@ export const MainScreen = () => {
       <div className=" absolute top-[20vh] lg:top-[40vh] flex flex-col w-full items-center">
         <div className="flex flex-col w-full">
           <TypeWriter
-            text={"// OrchX"}
+            text={"// 0xORCHX"}
             className="text-3xl font-extrabold mb-8"
             speed={10}
             cursor={false}
