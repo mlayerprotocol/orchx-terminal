@@ -96,7 +96,7 @@ export const MainScreen = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [dateString, setDateString] = useState();
+  const [dateString, setDateString] = useState("");
   const [showFaq, setShowFaq] = useState(false);
   const [showFaqHeader, setShowFaqHeader] =  useState(false);
 
