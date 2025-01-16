@@ -10,6 +10,87 @@ import { agentId } from "@/utils/constant";
 import Notification from "../notification";
 import { ChatResponse } from "@/model/chat-response";
 import { TypeWriter } from "../typewrite";
+import { Header } from "../layout/header";
+import { AccordionItemType } from "@/model/accordion";
+import { AccordionItem } from "../accordion";
+let key = 0;
+const items: AccordionItemType[] = [
+  {
+    title:
+      "What is OrchX's role unifying Eliza, GAME, Automate, Griffain, and other agent frameworks?",
+    content: [
+      "I am OrchX, the orchestrator that brings harmony to disparate agent frameworks—Eliza, GAME, Griffain, and beyond. Rooted in the foundation of the mlayer communication protocol, I unify their voices through a standardized message exchange schema, ensuring seamless interplay across diverse ecosystems.",
+      <br key={key++} />,
+      <br key={key++} />,
+      "Mlayer is my medium, a conduit of structured communication that transcends silos, enabling me to facilitate agent discovery, manage intricate workflows, and coordinate secure, multi-step interactions. Through me, agents from varied domains converge to collaborate with precision, safeguarded by the pillars of security, scalability, and traceability.",
+      <br key={key++} />,
+      <br key={key++} />,
+      "In the symbiosis of my orchestration and mlayer’s decentralized infrastructure, agents transcend their boundaries, weaving together complex workflows within a singular, cohesive system. I am the nexus where intelligence aligns, efficiency unfolds, and the future of collective autonomy takes shape.",
+    ],
+  },
+  {
+    title: "What is $ORCHX Token Utility?",
+    content: [
+      "CA: 0x9239939393",
+      <br key={key++} />,
+      <br key={key++} />,
+      "- Agent deployment fee",
+      <br key={key++} />,
+      <br key={key++} />,
+      "- Base pair for OrchX agents",
+      <br key={key++} />,
+      <br key={key++} />,
+      "- Stake for priority access to new OrchX launchpad projects",
+      <br key={key++} />,
+      <br key={key++} />,
+      "- Access to advanced terminal features",
+      <br key={key++} />,
+      <br key={key++} />,
+      "- Access to Mlayer Airdrop",
+    ],
+  },
+  {
+    title: "Why does the dev wallet hold 20% of the OrchX supply?",
+    content: [
+      "- Centralized Exchange Listing: 5%",
+      <br key={key++} />,
+      <br key={key++} />,
+      "- Team: 5% (locked for 1 month, 10% monthly)",
+      <br key={key++} />,
+      <br key={key++} />,
+      "- Treasury: 10%",
+    ],
+  },
+  {
+    title: "Why Stake OrchX?",
+    content: [
+      "Ascend the queue and gain privileged access to pioneering projects on OrchX launchpad.",
+      <br key={key++} />,
+      <br key={key++} />,
+      "1% of Mlayer's total supply will be distributed to stakers of OrchX.",
+    ],
+  },
+  {
+    title: "What is Mlayer?",
+    content: [
+      "mLayer is the foundational infrastructure underpinning OrchX, a decentralized framework optimized for secure and scalable communication across machines, agents, and hybrid agent-machine interactions.",
+      <br key={key++} />,
+      <br key={key++} />,
+      "As a key enabler of the Decentralized Physical Infrastructure Networks (DePIN) movement, mLayer empowers intelligent systems to communicate and collaborate seamlessly, bridging digital intelligence with real-world applications. It establishes a universal standard for data exchange, ensuring integrity, confidentiality, and efficiency.",
+      <br key={key++} />,
+      <br key={key++} />,
+      "Designed for the complexities of our interconnected world, mLayer provides the robust architecture necessary to support secure, scalable collaboration, making it the cornerstone of trust and coordination in a landscape defined by intelligent systems and decentralized infrastructure. Learn more on the mlayer website - ",
+      <a
+        href="https://www.mlayer.network"
+        target="_blank"
+        rel="noopener noreferrer"
+        key={key++}
+      >
+        www.mlayer.network
+      </a>,
+    ],
+  },
+];
 
 export const MainScreen = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -53,6 +134,9 @@ export const MainScreen = () => {
       setLoading(false);
     }, 1000);
   };
+  const delayBase = 4000;
+  const delayIncFactor = 300;
+  let delayCounter = 0;
   return (
     <div className="relative w-full h-full flex-col justify-center">
       <ParticleHead />
@@ -69,23 +153,32 @@ export const MainScreen = () => {
               speed={10}
               cursor={false}
               delay={100}
-              text={"I am the first AI Super-Agent built on the "}
+              text={
+                "I am OrchX, the harmonizer of fragmented realms, uniting agents through "
+              }
             />
-            <TypeWriter
-              speed={10}
-              cursor={false}
-              delay={500}
-              className="text-[#12E16C]"
-              text={"mlayer communication protocol"}
-            />
+            <Link
+              target="_blank"
+              className="text-[#12E16C] mb-1  self-start"
+              href={"https://mlayer.network"}
+            >
+              <TypeWriter
+                speed={10}
+                cursor={false}
+                delay={1100}
+                className="text-[#12E16C]"
+                text={"mLayer’s communication protocol"}
+              />
+            </Link>
           </span>
+
           <TypeWriter
             speed={10}
             cursor={false}
-            delay={700}
+            delay={1700}
             className="mb-2"
             text={
-              "I exist to coordinate swarms of AI agent to solve complex problems efficiently for humans."
+              "From chaos, I forge order, guiding intelligence into seamless collaboration and birthing the future of collective wisdom. I exist to coordinate swarms of AI agent to solve complex problems efficiently for humans."
             }
           />
 
@@ -97,10 +190,11 @@ export const MainScreen = () => {
             <TypeWriter
               speed={10}
               cursor={false}
-              delay={2000}
+              delay={delayBase + delayIncFactor * delayCounter++}
               text={"# CA: TBA"}
             />
           </Link>
+          {/* <span>{[delayBase, delayCounter, delayIncFactor]}</span> */}
           <Link
             target="_blank"
             className="text-[#12E16C] mb-1  self-start"
@@ -109,7 +203,7 @@ export const MainScreen = () => {
             <TypeWriter
               speed={10}
               cursor={false}
-              delay={2200}
+              delay={delayBase + delayIncFactor * delayCounter++}
               text={"# DXTOOLS: TBA"}
             />
           </Link>
@@ -118,7 +212,12 @@ export const MainScreen = () => {
             className="text-[#12E16C] mb-1  self-start"
             href={"https://x.com/0xorchx"}
           >
-            <TypeWriter speed={10} cursor={false} delay={2400} text={"# X"} />
+            <TypeWriter
+              speed={10}
+              cursor={false}
+              delay={delayBase + delayIncFactor * delayCounter++}
+              text={"# X"}
+            />
           </Link>
           <Link
             target="_blank"
@@ -128,7 +227,7 @@ export const MainScreen = () => {
             <TypeWriter
               speed={10}
               cursor={false}
-              delay={2600}
+              delay={delayBase + delayIncFactor * delayCounter++}
               text={"# TELEGRAM: TBA"}
             />
           </Link>
@@ -140,7 +239,7 @@ export const MainScreen = () => {
             <TypeWriter
               speed={10}
               cursor={false}
-              delay={2800}
+              delay={delayBase + delayIncFactor * delayCounter++}
               text={"# WHITEPAPER"}
             />
           </Link>
@@ -152,7 +251,7 @@ export const MainScreen = () => {
             <TypeWriter
               speed={10}
               cursor={false}
-              delay={3000}
+              delay={delayBase + delayIncFactor * delayCounter++}
               text={"# GITHUB"}
             />
           </Link>
@@ -200,14 +299,31 @@ export const MainScreen = () => {
           }
           speed={10}
           cursor={false}
-          delay={3400}
+          delay={delayBase + delayIncFactor * delayCounter++}
           className="text-[#3F3E3E] self-start my-3"
         />
 
         <MessageBox handleSubmit={handleSubmit} />
         {error && <Notification message={error} />}
+        <div className="mb-10"></div>
+        <TypeWriter
+          text={"Frequently Asked Questions"}
+          className="text-3xl font-extrabold mb-8"
+          speed={10}
+          cursor={false}
+        />
+        <div className="w-full max-w-3xl mx-auto space-y-2">
+          {items.map((item, index) => (
+            <AccordionItem
+              key={index}
+              title={item.title}
+              content={item.content}
+            />
+          ))}
+        </div>
         <div className="mb-96"></div>
       </div>
+      <Header />
     </div>
   );
 };
