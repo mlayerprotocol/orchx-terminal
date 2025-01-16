@@ -8,7 +8,7 @@ export const Loader: React.FC = () => {
 
 export const LinearLoader: React.FC = () => {
     return (
-      <div className="w-auto h-1  rounded-2xl mx-20 bg-gray-700 overflow-hidden">
+      <div className="w-1/2 h-1  rounded-2xl bg-gray-700 overflow-hidden">
         <div className="h-full rounded-2xl bg-[#9D9D02] animate-[progress_1.5s_ease-in-out_infinite]"></div>
       </div>
     );
