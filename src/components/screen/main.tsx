@@ -328,7 +328,7 @@ export const MainScreen = () => {
           speed={10}
           cursor={false}
           delay={delayBase + delayIncFactor * delayCounter++}
-          className="text-[#3F3E3E] self-start my-3"
+          className="text-[#5f5d5d] self-start my-3"
         />
 
         <MessageBox handleSubmit={handleSubmit} />
