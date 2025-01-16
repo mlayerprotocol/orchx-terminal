@@ -6,18 +6,26 @@ export const TypeWriter = ({
   delay = 0,
   cursor = true,
   className = "",
-}: {text: string |  (() => string), speed?: number, delay?: number, cursor?: boolean, className?: string }) => {
+  onFinish,
+}: {
+  text: string | (() => string);
+  speed?: number;
+  delay?: number;
+  cursor?: boolean;
+  className?: string;
+  onFinish?: (text) => void;
+}) => {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const [textValue, setTextValue] = useState("");
 
   useEffect(() => {
-    console.log("TYPE",typeof text )
+    console.log("TYPE", typeof text);
     if (typeof text == "function") {
-      setTextValue(text())
+      setTextValue(text());
     } else {
-      setTextValue(text)
+      setTextValue(text);
     }
   }, [text]);
 
@@ -34,6 +42,12 @@ export const TypeWriter = ({
 
     return () => clearTimeout(startTimeout);
   }, [textValue, delay]);
+
+  useEffect(() => {
+    if (currentIndex > 0 && currentIndex == textValue.length) {
+      onFinish?.(textValue);
+    }
+  }, [currentIndex, textValue, onFinish]);
 
   useEffect(() => {
     let timer;

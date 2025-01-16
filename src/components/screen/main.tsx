@@ -315,6 +315,7 @@ export const MainScreen = () => {
                     message.sender == "0xOrchX" ? "#9D9D02" : undefined
                   }
                   className={message.sender == "0xOrchX" ? "mb-5" : ""}
+                  copyText={message.sender == "0xOrchX"}
                 />
               );
             })}
