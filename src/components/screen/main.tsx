@@ -132,7 +132,7 @@ export const MainScreen = () => {
     if (!response.success) {
       handleError(response.error?.toString());
       const aiMessage: Message = {
-        sender: "0xOrchx",
+        sender: "0xOrchX",
         text: "Something went wrong",
       };
       setMessages((prev) => [...prev, aiMessage]);
@@ -140,7 +140,7 @@ export const MainScreen = () => {
     }
     const respondMessage: ChatResponse[] = response.data ?? [];
     const respondMessageMessage: Message[] = respondMessage.map((rM) => ({
-      sender: "0xOrchx",
+      sender: "0xOrchX",
       text: rM.text,
     }));
     setMessages((prev) => [...prev, ...respondMessageMessage]);
@@ -312,9 +312,9 @@ export const MainScreen = () => {
                   username={message.sender}
                   message={message.text}
                   messageColor={
-                    message.sender == "0xOrchx" ? "#9D9D02" : undefined
+                    message.sender == "0xOrchX" ? "#9D9D02" : undefined
                   }
-                  className={message.sender == "0xOrchx" ? "mb-5" : ""}
+                  className={message.sender == "0xOrchX" ? "mb-5" : ""}
                 />
               );
             })}

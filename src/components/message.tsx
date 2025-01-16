@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 export interface Message {
-  sender: "uknown_entity" | "0xOrchx";
+  sender: "uknown_entity" | "0xOrchX";
   text: string;
 }
 

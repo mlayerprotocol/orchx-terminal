@@ -16,8 +16,8 @@ export const ChatBox = ({
 }: ChatBoxProps) => {
   return (
     <span className={`${className} flex gap-2 flex-wrap mb-2`}>
-      {username != "0xOrchx" && <span>{"> "}</span>}
-      {username == "0xOrchx" && <span className="w-2" />}
+      {username != "0xOrchX" && <span>{"> "}</span>}
+      {username == "0xOrchX" && <span className="w-2" />}
       <span className="text-[#837E7E]">{username}: </span>
       {"  "}
       <span className="flex gap-2" style={{ color: messageColor }}>
