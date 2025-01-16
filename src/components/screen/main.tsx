@@ -330,9 +330,9 @@ export const MainScreen = () => {
           delay={delayBase + delayIncFactor * delayCounter++}
           className="text-[#5f5d5d] self-start my-3"
         />
-        {loading && <LinearLoader />} 
+      
         <MessageBox handleSubmit={handleSubmit} />
-        
+        {loading && <LinearLoader />} 
         {error && <Notification message={error} />}
         <div className="mb-10"></div>
         {showFaqHeader && <TypeWriter
