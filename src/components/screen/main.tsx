@@ -13,6 +13,7 @@ import { TypeWriter } from "../typewrite";
 import { Header } from "../layout/header";
 import { AccordionItemType } from "@/model/accordion";
 import { AccordionItem } from "../accordion";
+import { Footer } from "../layout/footer";
 let key = 0;
 const items: AccordionItemType[] = [
   {
@@ -98,7 +99,7 @@ export const MainScreen = () => {
   const [error, setError] = useState<string | null>(null);
   const [dateString, setDateString] = useState("");
   const [showFaq, setShowFaq] = useState(false);
-  const [showFaqHeader, setShowFaqHeader] =  useState(false);
+  const [showFaqHeader, setShowFaqHeader] = useState(false);
 
   const handleError = (message: string = "Something went wrong!") => {
     setError(message); // Simulate an error
@@ -108,18 +109,18 @@ export const MainScreen = () => {
     }, 3000);
   };
   useEffect(() => {
-    setDateString(new Date().toLocaleString())
+    setDateString(new Date().toLocaleString());
     setInterval(() => {
-      setDateString(new Date().toLocaleString())
-    }, 1000)
+      setDateString(new Date().toLocaleString());
+    }, 1000);
     setTimeout(() => {
-      setShowFaqHeader(true)
-    }, 8000)
+      setShowFaqHeader(true);
+    }, 8000);
     setTimeout(() => {
-      setShowFaq(true)
-    }, 8500)
-  }, [])
- 
+      setShowFaq(true);
+    }, 8500);
+  }, []);
+
   const handleSubmit = async (userMessage: Message) => {
     setMessages([...messages, userMessage]);
     setLoading(true);
@@ -152,20 +153,24 @@ export const MainScreen = () => {
   const delayBase = 4000;
   const delayIncFactor = 300;
   let delayCounter = 0;
-  
+
   return (
     <div className="relative w-full h-full flex-col justify-center">
       <ParticleHead />
       <div className=" absolute top-[20vh] lg:top-[40vh] flex flex-col w-full items-center">
         <div className="flex flex-col w-full">
-          <div className="flex w-full"> <TypeWriter
-            text={()=>"#0xORCHX " }
-            className="text-2xl font-extrabold mb-3 mr-5"
-            speed={10}
-            cursor={false}
-          /> 
-            {!!dateString && <span className="text-2xl font-extrabold mb-3">{dateString}</span>}
-            </div>
+          <div className="flex w-full">
+            {" "}
+            <TypeWriter
+              text={() => "#0xORCHX "}
+              className="text-2xl font-extrabold mb-3 mr-5"
+              speed={10}
+              cursor={false}
+            />
+            {!!dateString && (
+              <span className="text-2xl font-extrabold mb-3">{dateString}</span>
+            )}
+          </div>
           <span>
             <TypeWriter
               speed={10}
@@ -188,9 +193,8 @@ export const MainScreen = () => {
                 text={"mLayer’s communication protocol."}
               />
             </Link>
-         
 
-          {/* <TypeWriter
+            {/* <TypeWriter
             speed={10}
             cursor={false}
             delay={1700}
@@ -200,15 +204,15 @@ export const MainScreen = () => {
             }
             /> */}
             <TypeWriter
-            speed={10}
-            cursor={false}
-            delay={1700}
-            className="mb-2"
-            text={
-              "By intricately coordinating swarms of intelligence, I birth super-intelligence and unravel complex human problems with unparalled efficiency."
-            }
+              speed={10}
+              cursor={false}
+              delay={1700}
+              className="mb-2"
+              text={
+                "By intricately coordinating swarms of intelligence, I birth super-intelligence and unravel complex human problems with unparalled efficiency."
+              }
             />
-             </span>
+          </span>
 
           <Link
             target="_blank"
@@ -320,7 +324,6 @@ export const MainScreen = () => {
               );
             })}
           </>
-        
         </div>
         <TypeWriter
           text={
@@ -331,27 +334,31 @@ export const MainScreen = () => {
           delay={delayBase + delayIncFactor * delayCounter++}
           className="text-[#5f5d5d] self-start my-3"
         />
-      
+
         <MessageBox handleSubmit={handleSubmit} />
-        {loading && <LinearLoader />} 
+        {loading && <LinearLoader />}
         {error && <Notification message={error} />}
         <div className="mb-10"></div>
-        {showFaqHeader && <TypeWriter
-          text={"Frequently Asked Questions"}
-          className="text-3xl font-extrabold mb-8"
-          speed={10}
-          cursor={false}
-        />}
-        {showFaq && <div className="w-full max-w-3xl mx-auto space-y-2">
-          {items.map((item, index) => (
-            <AccordionItem
-              key={index}
-              title={item.title}
-              content={item.content}
-            />
-          ))}
-        </div>}
-        <div className="mb-96"></div>
+        {showFaqHeader && (
+          <TypeWriter
+            text={"Frequently Asked Questions"}
+            className="text-3xl font-extrabold mb-8"
+            speed={10}
+            cursor={false}
+          />
+        )}
+        {showFaq && (
+          <div className="w-full max-w-3xl mx-auto space-y-2">
+            {items.map((item, index) => (
+              <AccordionItem
+                key={index}
+                title={item.title}
+                content={item.content}
+              />
+            ))}
+          </div>
+        )}
+        <Footer />
       </div>
       <Header />
     </div>

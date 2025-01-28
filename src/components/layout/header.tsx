@@ -7,7 +7,7 @@ export const Header = () => {
     <div
       className={`absolute top-0 flex flex-wrap w-full justify-between items-start`}
     >
-      <img src={"/logo-black.png"} className="w-16 lg:w-20 " alt="" />
+      <img src={"/logo.svg"} className="w-16 lg:w-20 " alt="" />
       <div className="flex flex-col gap-4">
         <Link
           target="_blank"
